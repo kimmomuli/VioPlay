@@ -1,9 +1,10 @@
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-bold text-rose-500">
-      <Button>Click me</Button>
+    <div>
+      <Image src="/logo.svg" height={50} width={50} alt="Logo"/>
+      <p className="text-xl font-semibold">VioPlay</p>
     </div>
   );
 }
