@@ -7,4 +7,4 @@ export default function Home() {
       <p className="text-xl font-semibold">VioPlay</p>
     </div>
   );
-}
+};
