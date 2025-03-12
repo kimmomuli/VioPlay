@@ -46,7 +46,6 @@ export const MainSection = () => {
                                         return clerk.openSignIn();
                                     }
                                 }}
-                                className="hover:bg-secondary hover:text-secondary-foreground transition-colors px-3 py-2 rounded-md"
                             >
                                 <Link href={item.url} className="flex items-center gap-4">
                                     <item.icon />

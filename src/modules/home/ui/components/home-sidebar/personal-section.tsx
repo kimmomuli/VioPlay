@@ -49,7 +49,6 @@ export const PersonalSection = () => {
                                         return clerk.openSignIn();
                                     }
                                 }}
-                                className="hover:bg-secondary hover:text-secondary-foreground transition-colors px-3 py-2 rounded-md"
                             >
                                 <Link href={item.url} className="flex items-center">
                                     <item.icon />
