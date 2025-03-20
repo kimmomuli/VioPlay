@@ -15,6 +15,13 @@
       "when": 1740323249558,
       "tag": "0001_typical_purifiers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1741960428431,
+      "tag": "0002_fancy_red_wolf",
+      "breakpoints": true
     }
   ]
 }
