@@ -71,6 +71,13 @@
       "when": 1743411095542,
       "tag": "0009_rare_pyro",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1744017656542,
+      "tag": "0010_good_scourge",
+      "breakpoints": true
     }
   ]
 }
