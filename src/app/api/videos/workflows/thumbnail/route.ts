@@ -50,6 +50,8 @@ export const { POST } = serve(
     );
 
     const tempThumbnailUrl = body.data[0]?.url;
+    console.log("OpenAI API Response Body:", JSON.stringify(body, null, 2)); // Kirjaa koko vastaus
+
 
     if (!tempThumbnailUrl) {
       throw new Error("Bad request");
