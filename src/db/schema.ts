@@ -1,5 +1,5 @@
 
-import { pgTable, text, uuid, timestamp, uniqueIndex, integer, pgEnum } from "drizzle-orm/pg-core";
+import { pgTable, text, uuid, timestamp, uniqueIndex, integer, pgEnum, primaryKey } from "drizzle-orm/pg-core";
 
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from "drizzle-zod";
 
@@ -51,6 +51,24 @@ export const videos = pgTable("videos", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+export const videoViews = pgTable("video_views", {
+  userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }).notNull(),
+  videoId: uuid("video_id").references(() => videos.id, { onDelete: "cascade" }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [
+  primaryKey({
+    name: "video_views_pk",
+    columns: [t.userId, t.videoId]
+  }),
+]);
+
+
 export const videoInsertSchema = createInsertSchema(videos);
 export const videoUpdateSchema = createUpdateSchema(videos);
 export const videoSelectSchema = createSelectSchema(videos);
+
+
+export const videoViewSelectSchema = createSelectSchema(videoViews);
+export const videoViewInsertSchema = createInsertSchema(videoViews);
+export const videoViewUpdateSchema = createUpdateSchema(videoViews);

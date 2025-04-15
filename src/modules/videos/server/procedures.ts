@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { users, videos, videoUpdateSchema } from "@/db/schema";
+import { users, videos, videoUpdateSchema, videoViews } from "@/db/schema";
 import { mux } from "@/lib/mux";
 import { workflow } from "@/lib/workkflow";
 import { baseProcedure, createTRPCRouter, protectedProcedure } from "@/trpc/init";
@@ -13,16 +13,17 @@ export const videosRouter = createTRPCRouter({
         .input(z.object({ id: z.string().uuid() }))
         .query(async ({ input }) => {
             const [existingVideo] = await db
-              .select({
-                ...getTableColumns(videos),
-                user: {
-                    ...getTableColumns(users), 
-                  },
-              })
-              .from(videos)
-              .innerJoin(users, eq(videos.userId, users.id)) 
-              .where(eq(videos.id, input.id));
-      
+                .select({
+                    ...getTableColumns(videos),
+                    user: {
+                    ...getTableColumns(users),
+                    },
+                    viewCount: db.$count(videoViews, eq(videoViews.videoId, videos.id)), 
+                })
+                .from(videos)
+                .innerJoin(users, eq(videos.userId, users.id))
+                .where(eq(videos.id, input.id));
+
             if (!existingVideo) { 
               throw new TRPCError({ code: "NOT_FOUND" });
             }

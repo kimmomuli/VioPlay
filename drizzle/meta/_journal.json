@@ -78,6 +78,13 @@
       "when": 1744017656542,
       "tag": "0010_good_scourge",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1744707742984,
+      "tag": "0011_tiny_colossus",
+      "breakpoints": true
     }
   ]
 }
