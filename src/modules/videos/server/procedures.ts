@@ -166,6 +166,22 @@ export const videosRouter = createTRPCRouter({
                     message: "Video not found",
                 });
             }
+
+            if (removedVideo.muxAssetId) {
+                await mux.video.assets.delete(removedVideo.muxAssetId);
+              
+            }
+
+            const utapi = new UTApi();
+            if (removedVideo.thumbnailKey) {
+                await utapi.deleteFiles(removedVideo.thumbnailKey);
+            } 
+
+            if (removedVideo.previewKey) {
+                await utapi.deleteFiles(removedVideo.previewKey);
+            } 
+
+
             return removedVideo;
         }),
     update: protectedProcedure
