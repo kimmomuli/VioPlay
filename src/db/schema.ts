@@ -78,6 +78,17 @@ export const videoReactions = pgTable("video_reactions", {
   }),
 ]);
 
+export const subscriptions = pgTable("subscriptions", {
+  viewerId: uuid("viewer_id").references(() => users.id, { onDelete: "cascade" }).notNull(),
+  creatorId: uuid("creator_id").references(() => users.id, { onDelete: "cascade" }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [
+  primaryKey({
+    name: "subscriptions_pk", 
+    columns: [t.viewerId, t.creatorId]
+  }),
+]);
 
 
 export const videoInsertSchema = createInsertSchema(videos);
